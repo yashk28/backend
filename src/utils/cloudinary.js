@@ -1,10 +1,11 @@
 import { v2 as cloudinary } from "cloudinary";
 import fs from "fs";
 
+// currently added the direct values as .env values are giving undefined
 cloudinary.config({ 
-  cloud_name: process.env.CLOUDINARY_CLOUD_NAME, 
-  api_key: process.env.CLOUDINARY_API_KEY, 
-  api_secret: process.env.CLOUDINARY_API_SECRET 
+  cloud_name: 'dgwh1qmh2', 
+  api_key: '931337591646674', 
+  api_secret: '4Tbj3SUTTj1m-0lCK-FOyoNoKD4' 
 });
 
 const uploadOnCloudinary = async (localFilePath) => {
@@ -15,8 +16,7 @@ const uploadOnCloudinary = async (localFilePath) => {
             resource_type: "auto"
         })
 
-        console.log("File uploaded on cloudinary", response.url)
-
+        fs.unlinkSync(localFilePath);
         return response;
 
     }catch(error) {
