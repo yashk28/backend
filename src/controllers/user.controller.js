@@ -185,8 +185,7 @@ const logoutUser = asyncHandler(async (req, res) => {
 // needed so that user dont need to pass emai/username password all the time
 // We need this endpoint for frontend engineer so he can write a logic to refresh the access token.
 const refreshAccessToken = asyncHandler(async (req, res) => {
-  const incomingRefreshToken =
-    (await req.cookie.refreshToken) || req.body.refreshToken;
+  const incomingRefreshToken = req.cookie.refreshToken || req.body.refreshToken;
   if (!incomingRefreshToken) {
     throw new ApiError(401, "unauthorized request");
   }
